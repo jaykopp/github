@@ -14,8 +14,10 @@ def test_version():
 
 
 def test_profile():
-    r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
-    assert r.status_code == 200
+    test_profiles = ['jaykopp', 'octocat']
+    for profile in test_profiles:
+        r = requests.get(f'https://api.github.com/users/{profile}')
+        assert r.status_code == 200
 
 def test_my_profile():
     r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
