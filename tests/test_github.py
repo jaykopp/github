@@ -3,7 +3,7 @@
 import requests
 from typer.testing import CliRunner
 
-from github import __app_name__, __version__, cli
+from github import __app_name__, __version__, cli, github
 
 runner = CliRunner()
 
@@ -16,7 +16,7 @@ def test_version():
 def test_profile():
     test_profiles = ['jaykopp', 'octocat']
     for profile in test_profiles:
-        r = requests.get(f'https://api.github.com/users/{profile}')
+        r = github.get_profile(profile)
         assert r.status_code == 200
 
 def test_my_profile():
